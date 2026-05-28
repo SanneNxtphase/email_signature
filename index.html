@@ -356,11 +356,9 @@ function copyPlain() {
   navigator.clipboard.writeText(txt).then(() => showToast('✓ Platte tekst gekopieerd'));
 }
 
-// Set placeholders as visual hints, use value="" so fields are empty
-document.getElementById('inp-name').placeholder  = 'Sanne Brandsma';
-document.getElementById('inp-title').placeholder = 'Chief of Staff';
-document.getElementById('inp-phone').placeholder = '06 53 92 19 60';
-// But show example in preview using placeholder text as fallback
+document.getElementById('inp-name').placeholder  = 'Naam';
+document.getElementById('inp-title').placeholder = 'Functietitel';
+document.getElementById('inp-phone').placeholder = 'Telefoonnummer';
 update();
 </script>
 </body>
