@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --cream:     #F9F6F1;
       --surface:   #F5F0E8;
@@ -18,7 +17,6 @@
       --mint:      #D9E5D7;
       --font:      'DM Sans', system-ui, sans-serif;
     }
-
     body {
       background: var(--cream);
       font-family: var(--font);
@@ -27,8 +25,6 @@
       display: flex;
       flex-direction: column;
     }
-
-    /* ── TOPBAR ── */
     .topbar {
       background: var(--off-black);
       padding: 13px 48px;
@@ -37,14 +33,7 @@
       gap: 14px;
     }
     .topbar img { height: 30px; width: 30px; }
-    .topbar-title {
-      font-size: 13px;
-      font-weight: 500;
-      color: #fff;
-      letter-spacing: 0.2px;
-    }
-
-    /* ── PAGE ── */
+    .topbar-title { font-size: 13px; font-weight: 500; color: #fff; }
     .page {
       flex: 1;
       max-width: 960px;
@@ -52,219 +41,141 @@
       margin: 0 auto;
       padding: 44px 48px 80px;
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 300px 1fr;
       gap: 36px;
       align-items: start;
     }
-
-    /* ── LEFT PANEL ── */
-    .left { display: flex; flex-direction: column; gap: 16px; }
-
-    .card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
+    @media (max-width: 700px) {
+      .page { grid-template-columns: 1fr; padding: 24px 20px 60px; }
     }
+    .left { display: flex; flex-direction: column; gap: 16px; }
+    .card { background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
     .card-head {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 11px 18px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      color: var(--stone);
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 11px 18px; font-size: 10px; font-weight: 600;
+      letter-spacing: 1.6px; text-transform: uppercase; color: var(--stone);
     }
     .card-body { padding: 18px; }
-
     .field { margin-bottom: 13px; }
     .field:last-child { margin-bottom: 0; }
-    label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--stone);
-      margin-bottom: 5px;
-    }
+    label { display: block; font-size: 12px; font-weight: 500; color: var(--stone); margin-bottom: 5px; }
     input {
-      width: 100%;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      padding: 9px 12px;
-      font-family: var(--font);
-      font-size: 14px;
-      color: var(--off-black);
-      outline: none;
+      width: 100%; background: var(--cream); border: 1px solid var(--border);
+      border-radius: 7px; padding: 9px 12px; font-family: var(--font);
+      font-size: 14px; color: var(--off-black); outline: none;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
-    input:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(62,155,93,0.1);
-    }
-
+    input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(62,155,93,0.1); }
     .steps {
-      background: var(--mint);
-      border: 1px solid #b5d4b8;
-      border-radius: 10px;
-      padding: 14px 16px;
+      background: var(--mint); border: 1px solid #b5d4b8;
+      border-radius: 10px; padding: 14px 16px;
     }
     .steps-title { font-size: 12px; font-weight: 600; color: var(--green); margin-bottom: 8px; }
     .steps ol { padding-left: 16px; }
-    .steps li { font-size: 12px; color: #2a6b3f; line-height: 1.7; }
+    .steps li { font-size: 12px; color: #2a6b3f; line-height: 1.9; }
     .steps strong { color: var(--off-black); }
-
-    /* ── RIGHT PANEL ── */
     .right { display: flex; flex-direction: column; gap: 16px; }
-
-    /* Gmail mockup */
-    .gmail-wrap {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .gmail-wrap .card-head { background: var(--surface); }
+    .gmail-wrap { background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
     .gmail-chrome {
-      background: #f1f3f4;
-      padding: 9px 14px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      border-bottom: 1px solid #e0dbd3;
+      background: #f1f3f4; padding: 9px 14px; display: flex;
+      align-items: center; gap: 5px; border-bottom: 1px solid #e0dbd3;
     }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; }
     .url-bar {
-      flex: 1;
-      margin: 0 8px;
-      height: 18px;
-      background: #fff;
-      border-radius: 4px;
-      border: 1px solid #e0dbd3;
-      display: flex;
-      align-items: center;
-      padding: 0 8px;
+      flex: 1; margin: 0 8px; height: 18px; background: #fff;
+      border-radius: 4px; border: 1px solid #e0dbd3;
+      display: flex; align-items: center; padding: 0 8px;
     }
     .url-bar span { font-size: 10px; color: var(--stone); }
-
-    .email-body {
-      padding: 22px 26px 26px;
-    }
-    .email-greeting {
-      font-size: 13px;
-      color: #aaa;
-      line-height: 1.7;
-      margin-bottom: 0;
-      font-family: var(--font);
-    }
-    .email-sep {
-      height: 1px;
-      background: var(--border);
-      margin: 16px 0;
-    }
-
-    /* Copy buttons */
+    .email-body { padding: 22px 26px 26px; }
+    .email-greeting { font-size: 13px; color: #aaa; line-height: 1.7; font-family: var(--font); }
+    .email-sep { height: 1px; background: var(--border); margin: 16px 0; }
     .btn-row { display: flex; gap: 10px; }
     .btn {
-      flex: 1;
-      padding: 12px 18px;
-      border: none;
-      border-radius: 8px;
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: filter 0.15s, transform 0.1s;
+      flex: 1; padding: 12px 18px; border: none; border-radius: 8px;
+      font-family: var(--font); font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: filter 0.15s, transform 0.1s;
     }
     .btn:active { transform: scale(0.98); }
     .btn-primary { background: var(--off-black); color: #fff; }
     .btn-secondary { background: var(--surface); color: var(--off-black); border: 1px solid var(--border); }
     .btn:hover { filter: brightness(0.9); }
-
-    /* Toast */
+    .download-btn {
+      width: 100%; padding: 13px; border: 2px solid var(--green);
+      border-radius: 8px; background: #fff; color: var(--green);
+      font-family: var(--font); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: background 0.15s;
+      text-align: center;
+    }
+    .download-btn:hover { background: var(--mint); }
     .toast {
-      position: fixed;
-      bottom: 28px;
-      left: 50%;
+      position: fixed; bottom: 28px; left: 50%;
       transform: translateX(-50%) translateY(12px);
-      background: var(--off-black);
-      color: var(--cream);
-      padding: 10px 24px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      opacity: 0;
+      background: var(--off-black); color: var(--cream);
+      padding: 10px 24px; border-radius: 999px;
+      font-size: 13px; font-weight: 500; opacity: 0;
       transition: opacity 0.2s, transform 0.2s;
-      pointer-events: none;
-      z-index: 100;
+      pointer-events: none; z-index: 100;
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
     footer {
-      text-align: center;
-      padding: 16px;
-      font-size: 12px;
-      color: var(--stone);
-      border-top: 1px solid var(--border);
+      text-align: center; padding: 16px; font-size: 12px;
+      color: var(--stone); border-top: 1px solid var(--border);
     }
   </style>
 </head>
 <body>
 
 <nav class="topbar">
-  <img src="logo-mark.svg" alt="Nxt Phase AI"/>
+  <img src="data:image/png;base64,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" alt="Nxt Phase AI"/>
   <span class="topbar-title">Email Handtekening Generator</span>
 </nav>
 
 <div class="page">
-
-  <!-- LEFT -->
   <div class="left">
     <div class="card">
       <div class="card-head">Jouw gegevens</div>
       <div class="card-body">
         <div class="field">
           <label>Volledige naam</label>
-          <input type="text" id="inp-name" oninput="update()"/>
+          <input type="text" id="inp-name" placeholder="Naam" oninput="update()"/>
         </div>
         <div class="field">
           <label>Functietitel</label>
-          <input type="text" id="inp-title" oninput="update()"/>
+          <input type="text" id="inp-title" placeholder="Functietitel" oninput="update()"/>
         </div>
         <div class="field">
           <label>Telefoonnummer</label>
-          <input type="text" id="inp-phone" oninput="update()"/>
+          <input type="text" id="inp-phone" placeholder="Telefoonnummer" oninput="update()"/>
         </div>
         <div class="field">
-          <label>LinkedIn URL <span style="font-weight:300;color:#ccc">(optioneel)</span></label>
-          <input type="text" id="inp-linkedin" oninput="update()"/>
+          <label>LinkedIn <span style="font-weight:300;color:#ccc">(optioneel)</span></label>
+          <input type="text" id="inp-linkedin" placeholder="linkedin.com/in/naam" oninput="update()"/>
         </div>
       </div>
     </div>
 
     <div class="steps">
-      <div class="steps-title">Hoe plak je de handtekening?</div>
+      <div class="steps-title">Hoe zet je de handtekening in Outlook?</div>
       <ol>
-        <li>Klik op <strong>Kopieer handtekening</strong></li>
-        <li><strong>Gmail:</strong> Instellingen → Handtekening → plak met <strong>Ctrl+Shift+V</strong></li>
-        <li><strong>Outlook:</strong> Nieuw bericht → Handtekening → Handtekeningen → plak</li>
+        <li>Vul je gegevens in</li>
+        <li>Klik op <strong>Download handtekening (.htm)</strong></li>
+        <li>Sla het bestand op als:<br/><strong>C:\Users\[naam]\AppData\Roaming\<br/>Microsoft\Signatures\nxtphase.htm</strong></li>
+        <li>Start Outlook opnieuw</li>
+        <li>Ga naar <strong>Bestand → Opties → E-mail → Handtekeningen</strong> en kies <strong>nxtphase</strong></li>
       </ol>
     </div>
   </div>
 
-  <!-- RIGHT -->
   <div class="right">
     <div class="gmail-wrap">
-      <div class="card-head">Voorbeeld — zo ziet het eruit in een mail</div>
+      <div class="card-head">Voorbeeld</div>
       <div class="gmail-chrome">
         <div class="dot"></div><div class="dot"></div><div class="dot"></div>
         <div class="url-bar"><span>mail.google.com</span></div>
       </div>
       <div class="email-body">
         <div class="email-greeting">
-          Beste [naam],<br><br>
-          Dank voor je bericht. We nemen zo snel mogelijk contact met je op.<br><br>
           Met vriendelijke groet,
         </div>
         <div class="email-sep"></div>
@@ -273,40 +184,41 @@
     </div>
 
     <div class="btn-row">
-      <button class="btn btn-primary" onclick="copyHTML()">Kopieer handtekening</button>
+      <button class="btn btn-primary" onclick="copyHTML()">Kopieer (Gmail)</button>
       <button class="btn btn-secondary" onclick="copyPlain()">Platte tekst</button>
     </div>
+    <button class="download-btn" onclick="downloadHTM()">⬇ Download handtekening (.htm) — voor Outlook</button>
   </div>
-
 </div>
 
 <footer>© 2026 Nxt Phase AI — intern gebruik</footer>
 <div class="toast" id="toast"></div>
 
 <script>
-const LOGO = "https://nxtemail.vercel.app/logo-mark.png";
+const LOGO_PNG = "data:image/png;base64,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";
 
 function buildSig(name, title, phone, linkedin) {
-  const n = name  || 'Jouw Naam';
-  const t = title || 'Functietitel';
+  const n = name  || '';
+  const t = title || '';
+  if (!n && !t && !phone && !linkedin) return '<span style="color:#aaa;font-family:DM Sans,sans-serif;font-size:13px;">Vul je gegevens in...</span>';
 
   let rows = '';
   if (phone) rows += `<tr><td style="padding:0;font-family:Aptos,Arial,Helvetica,sans-serif;font-size:12pt;color:#444444;line-height:1.15;">${phone}</td></tr>`;
   if (linkedin) {
     const li = linkedin.replace(/^https?:\/\//, '');
-    rows += `<tr><td style="padding:0;font-family:Aptos,Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.15;"><a href="https://${li}" style="color:#3E9B5D;text-decoration:none;">${li}</a></td></tr>`;
+    rows += `<tr><td style="padding:0;font-family:Aptos,Arial,Helvetica,sans-serif;font-size:12pt;line-height:1.15;"><a href="https://${li}" style="color:#3E9B5D;text-decoration:none;">${li}</a></td></tr>`;
   }
 
   return `<table cellpadding="0" cellspacing="0" border="0" style="background:#ffffff;line-height:0;font-size:0;">
   <tr>
     <td style="padding-right:14px;vertical-align:middle;line-height:0;">
-      <img src="${LOGO}" width="56" height="56" alt="nxt phase ai" style="display:block;"/>
+      <img src="${LOGO_PNG}" width="56" height="56" alt="nxt phase ai" style="display:block;"/>
     </td>
     <td style="width:1px;background:#ddd8d0;line-height:0;font-size:0;">&nbsp;</td>
     <td style="padding-left:14px;vertical-align:middle;">
       <table cellpadding="0" cellspacing="0" border="0">
         <tr><td style="font-family:Aptos,Arial,Helvetica,sans-serif;font-size:12pt;font-weight:bold;color:#090909;line-height:1.15;padding-bottom:1px;white-space:nowrap;">${n}</td></tr>
-        <tr><td style="font-family:Aptos,Arial,Helvetica,sans-serif;font-size:12pt;line-height:1.15;padding-bottom:6px;white-space:nowrap;"><font color="#3E9B5D"><span style="color:#3E9B5D;">${t}</span></font></td></tr>
+        <tr><td style="font-family:Aptos,Arial,Helvetica,sans-serif;font-size:12pt;line-height:1.15;padding-bottom:6px;white-space:nowrap;"><font color="#3E9B5D">${t}</font></td></tr>
         ${rows}
         <tr><td style="font-family:Aptos,Arial,Helvetica,sans-serif;font-size:12pt;line-height:1.15;padding-top:4px;"><font color="#3E9B5D"><a href="https://nxtphase.ai" style="color:#3E9B5D;text-decoration:none;font-weight:600;">nxtphase.ai</a></font></td></tr>
       </table>
@@ -316,12 +228,12 @@ function buildSig(name, title, phone, linkedin) {
 }
 
 function vals() {
-  const g = id => { const el = document.getElementById(id); return el.value.trim() || el.placeholder || ''; };
+  const g = id => { const el = document.getElementById(id); return el.value.trim(); };
   return {
     name:     g('inp-name'),
     title:    g('inp-title'),
     phone:    g('inp-phone'),
-    linkedin: document.getElementById('inp-linkedin').value.trim(),
+    linkedin: g('inp-linkedin'),
   };
 }
 
@@ -334,7 +246,7 @@ function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2400);
+  setTimeout(() => t.classList.remove('show'), 2800);
 }
 
 function copyHTML() {
@@ -343,22 +255,32 @@ function copyHTML() {
   const blob  = new Blob([html], { type: 'text/html' });
   const plain = new Blob([html], { type: 'text/plain' });
   navigator.clipboard.write([new ClipboardItem({ 'text/html': blob, 'text/plain': plain })])
-    .then(() => showToast('✓ Gekopieerd — plak met Ctrl+Shift+V in Gmail of Outlook'))
-    .catch(() => navigator.clipboard.writeText(html).then(() => showToast('✓ HTML gekopieerd')));
+    .then(() => showToast('✓ Gekopieerd — plak met Ctrl+Shift+V in Gmail'))
+    .catch(() => navigator.clipboard.writeText(html).then(() => showToast('✓ Gekopieerd')));
 }
 
 function copyPlain() {
   const v = vals();
-  let txt = (v.name||'Jouw Naam') + '\n' + (v.title||'Functietitel') + '\n';
+  let txt = (v.name||'') + '\n' + (v.title||'') + '\n';
   if (v.phone)    txt += v.phone    + '\n';
   if (v.linkedin) txt += v.linkedin + '\n';
   txt += 'nxtphase.ai';
   navigator.clipboard.writeText(txt).then(() => showToast('✓ Platte tekst gekopieerd'));
 }
 
-document.getElementById('inp-name').placeholder  = 'Naam';
-document.getElementById('inp-title').placeholder = 'Functietitel';
-document.getElementById('inp-phone').placeholder = 'Telefoonnummer';
+function downloadHTM() {
+  const v = vals();
+  if (!v.name) { showToast('Vul eerst je naam in'); return; }
+  const sig = buildSig(v.name, v.title, v.phone, v.linkedin);
+  const htm = `<html><head><meta charset="UTF-8"/></head><body>` + sig + `</body></html>`;
+  const blob = new Blob([htm], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'nxtphase.htm';
+  a.click();
+  showToast('✓ Bestand gedownload — zie instructies links');
+}
+
 update();
 </script>
 </body>
