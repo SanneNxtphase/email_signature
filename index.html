@@ -92,8 +92,8 @@ const LOGO = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAYAAADG4PRL
 function buildSig(n, t, phone, linkedin) {
   let rows = '';
   if (phone) {
-    const telNum = phone.replace(/[^0-9+]/g, '');
-    rows += `<tr><td style="padding:0;mso-line-height-rule:exactly;font-family:Aptos,Arial,sans-serif;font-size:16px;line-height:20px;"><a href="tel:${telNum}" style="color:#444444;text-decoration:none;font-family:Aptos,Arial,sans-serif;font-size:16px;"><font color="#444444">${phone}</font></a></td></tr>`;
+    const chars = phone.split('').map(c => `<span style="color:#444444;font-family:Aptos,Arial,sans-serif;font-size:16px;mso-color-alt:#444444;">${c}</span>`).join('');
+    rows += `<tr><td style="padding:0;mso-line-height-rule:exactly;line-height:20px;white-space:nowrap;">${chars}</td></tr>`;
   }
   if (linkedin) {
     const li = linkedin.replace(/^https?:\/\//, '');
