@@ -3,131 +3,127 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nxt Phase AI — Email Handtekening</title>
+  <title>Nxt Phase AI — Handtekening</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --cream:   #F9F6F1;
-      --surface: #F5F0E8;
-      --black:   #090909;
-      --stone:   #9B9590;
-      --green:   #3E9B5D;
-      --border:  #E2DDD6;
-      --mint:    #D9E5D7;
-      --font:    'DM Sans', system-ui, sans-serif;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --cream:#F9F6F1;--surface:#F5F0E8;--black:#090909;
+      --stone:#9B9590;--green:#3E9B5D;--border:#E2DDD6;
+      --mint:#D9E5D7;--font:'DM Sans',system-ui,sans-serif;
     }
-    body { background: var(--cream); font-family: var(--font); color: var(--black); min-height: 100vh; display: flex; flex-direction: column; }
-    .topbar { background: var(--black); padding: 13px 48px; display: flex; align-items: center; gap: 14px; }
-    .topbar img { height: 30px; width: 30px; }
-    .topbar-title { font-size: 13px; font-weight: 500; color: #fff; }
-    .page { flex: 1; max-width: 960px; width: 100%; margin: 0 auto; padding: 44px 48px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 36px; align-items: start; }
-    @media (max-width: 700px) { .page { grid-template-columns: 1fr; padding: 24px 20px 60px; } }
-    .left { display: flex; flex-direction: column; gap: 16px; }
-    .card { background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .card-head { background: var(--surface); border-bottom: 1px solid var(--border); padding: 11px 18px; font-size: 10px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: var(--stone); }
-    .card-body { padding: 18px; }
-    .field { margin-bottom: 13px; }
-    .field:last-child { margin-bottom: 0; }
-    label { display: block; font-size: 12px; font-weight: 500; color: var(--stone); margin-bottom: 5px; }
-    input { width: 100%; background: var(--cream); border: 1px solid var(--border); border-radius: 7px; padding: 9px 12px; font-family: var(--font); font-size: 14px; color: var(--black); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
-    input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(62,155,93,0.1); }
-    .steps { background: var(--mint); border: 1px solid #b5d4b8; border-radius: 10px; padding: 14px 16px; }
-    .steps-title { font-size: 12px; font-weight: 600; color: var(--green); margin-bottom: 8px; }
-    .steps ol { padding-left: 16px; }
-    .steps li { font-size: 12px; color: #2a6b3f; line-height: 2; }
-    .steps strong { color: var(--black); }
-    .right { display: flex; flex-direction: column; gap: 16px; }
-    .preview-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .preview-body { padding: 24px; background: #fff; min-height: 100px; }
-    .btn-download { width: 100%; padding: 14px; border: none; border-radius: 8px; background: var(--black); color: #fff; font-family: var(--font); font-size: 15px; font-weight: 600; cursor: pointer; transition: filter 0.15s; }
-    .btn-download:hover { filter: brightness(1.2); }
-    .btn-download:disabled { opacity: 0.4; cursor: not-allowed; }
-    .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(12px); background: var(--black); color: var(--cream); padding: 10px 24px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none; z-index: 100; }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    footer { text-align: center; padding: 16px; font-size: 12px; color: var(--stone); border-top: 1px solid var(--border); }
-    /* Hidden render canvas */
-    #render-area { position: absolute; left: -9999px; top: 0; background: white; }
+    body{background:var(--cream);font-family:var(--font);color:var(--black);min-height:100vh;display:flex;flex-direction:column}
+    .topbar{background:var(--black);padding:12px 40px;display:flex;align-items:center;gap:12px}
+    .topbar img{height:28px;width:28px}
+    .topbar span{font-size:13px;font-weight:500;color:#fff}
+    .page{flex:1;max-width:900px;width:100%;margin:0 auto;padding:40px 40px 60px;display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start}
+    @media(max-width:680px){.page{grid-template-columns:1fr;padding:24px 20px}}
+
+    /* form */
+    .card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+    .card-head{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;font-size:10px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:var(--stone)}
+    .card-body{padding:16px}
+    .field{margin-bottom:12px}.field:last-child{margin-bottom:0}
+    label{display:block;font-size:12px;font-weight:500;color:var(--stone);margin-bottom:4px}
+    input{width:100%;background:var(--cream);border:1px solid var(--border);border-radius:7px;padding:9px 12px;font-family:var(--font);font-size:14px;color:var(--black);outline:none;transition:border-color .15s,box-shadow .15s}
+    input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(62,155,93,.1)}
+
+    /* steps */
+    .steps{background:var(--mint);border:1px solid #b5d4b8;border-radius:10px;padding:14px 16px}
+    .steps-title{font-size:12px;font-weight:600;color:var(--green);margin-bottom:8px}
+    .steps ol{padding-left:16px}
+    .steps li{font-size:12px;color:#2a6b3f;line-height:1.9}
+    .steps strong{color:var(--black)}
+
+    /* right */
+    .right{display:flex;flex-direction:column;gap:14px}
+    .preview-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+    .preview-body{padding:20px;background:#fff}
+
+    /* big copy button */
+    .btn-copy{width:100%;padding:15px;border:none;border-radius:8px;background:var(--black);color:#fff;font-family:var(--font);font-size:15px;font-weight:600;cursor:pointer;transition:filter .15s}
+    .btn-copy:hover{filter:brightness(1.2)}
+    .btn-copy:disabled{opacity:.35;cursor:not-allowed}
+
+    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--black);color:var(--cream);padding:10px 24px;border-radius:999px;font-size:13px;font-weight:500;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:100}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    footer{text-align:center;padding:14px;font-size:12px;color:var(--stone);border-top:1px solid var(--border)}
   </style>
 </head>
 <body>
 
 <nav class="topbar">
   <img src="data:image/png;base64,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" alt="Nxt Phase AI"/>
-  <span class="topbar-title">Email Handtekening Generator</span>
+  <span>Email Handtekening Generator</span>
 </nav>
 
 <div class="page">
-  <div class="left">
+
+  <!-- LEFT -->
+  <div style="display:flex;flex-direction:column;gap:14px">
     <div class="card">
       <div class="card-head">Jouw gegevens</div>
       <div class="card-body">
-        <div class="field"><label>Volledige naam</label><input type="text" id="inp-name" placeholder="Naam" oninput="update()"/></div>
-        <div class="field"><label>Functietitel</label><input type="text" id="inp-title" placeholder="Functietitel" oninput="update()"/></div>
-        <div class="field"><label>Telefoonnummer</label><input type="text" id="inp-phone" placeholder="Telefoonnummer" oninput="update()"/></div>
-        <div class="field"><label>LinkedIn <span style="font-weight:300;color:#ccc">(optioneel)</span></label><input type="text" id="inp-linkedin" placeholder="linkedin.com/in/naam" oninput="update()"/></div>
+        <div class="field"><label>Volledige naam</label><input id="inp-name" placeholder="Naam" oninput="update()"/></div>
+        <div class="field"><label>Functietitel</label><input id="inp-title" placeholder="Functietitel" oninput="update()"/></div>
+        <div class="field"><label>Telefoonnummer</label><input id="inp-phone" placeholder="Telefoonnummer" oninput="update()"/></div>
+        <div class="field"><label>LinkedIn <span style="font-weight:300;color:#ccc">(optioneel)</span></label><input id="inp-linkedin" placeholder="linkedin.com/in/naam" oninput="update()"/></div>
       </div>
     </div>
 
     <div class="steps">
-      <div class="steps-title">Hoe gebruik je dit in Outlook?</div>
+      <div class="steps-title">Instellen in Outlook</div>
       <ol>
         <li>Vul je gegevens in</li>
-        <li>Klik op <strong>Download handtekening (PNG)</strong></li>
-        <li>Ga in Outlook naar <strong>Instellingen → Handtekeningen → Nieuw</strong></li>
-        <li>Klik op het tabblad <strong>Invoegen → Afbeeldingen</strong></li>
-        <li>Selecteer het gedownloade PNG-bestand</li>
+        <li>Klik op <strong>Kopieer handtekening</strong></li>
+        <li>Ga naar <strong>Outlook → Instellingen → Handtekeningen → Nieuw</strong></li>
+        <li>Klik in het tekstvak en plak met <strong>Ctrl+Shift+V</strong></li>
         <li>Klik <strong>Opslaan</strong></li>
       </ol>
     </div>
   </div>
 
+  <!-- RIGHT -->
   <div class="right">
     <div class="preview-card">
       <div class="card-head">Voorbeeld</div>
       <div class="preview-body">
-        <div id="sig-preview"></div>
+        <div id="sig-preview"><span style="color:#bbb;font-size:13px">Vul je naam in om een voorbeeld te zien…</span></div>
       </div>
     </div>
-    <button class="btn-download" id="dl-btn" onclick="downloadPNG()" disabled>
-      ⬇ Download handtekening (PNG)
-    </button>
+    <button class="btn-copy" id="copy-btn" onclick="copyHTML()" disabled>Kopieer handtekening</button>
   </div>
 </div>
 
-<!-- Hidden area used to render signature for PNG export -->
-<div id="render-area"></div>
-
-<footer>© 2026 Nxt Phase AI — intern gebruik</footer>
+<footer>© 2026 Nxt Phase AI</footer>
 <div class="toast" id="toast"></div>
 
 <script>
-const LOGO_SRC = "data:image/png;base64,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";
+const LOGO = "data:image/png;base64,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";
 
-function buildSigHTML(n, t, phone, linkedin) {
+function buildSig(n, t, phone, linkedin) {
   let rows = '';
-  if (phone) rows += `<tr><td style="padding:0;font-family:Arial,sans-serif;font-size:15px;color:#444;line-height:1.3;">${phone}</td></tr>`;
+  if (phone) rows += `<tr><td style="padding:0;font-family:Aptos,Arial,sans-serif;font-size:12pt;color:#444;line-height:1.2;">${phone}</td></tr>`;
   if (linkedin) {
     const li = linkedin.replace(/^https?:\/\//, '');
-    rows += `<tr><td style="padding:0;font-family:Arial,sans-serif;font-size:15px;line-height:1.3;color:#3E9B5D;">${li}</td></tr>`;
+    rows += `<tr><td style="padding:0;font-family:Aptos,Arial,sans-serif;font-size:12pt;line-height:1.2;"><font color="#3E9B5D">${li}</font></td></tr>`;
   }
-  return `
-    <table cellpadding="0" cellspacing="0" border="0" style="background:#fff;">
-      <tr>
-        <td style="padding-right:16px;vertical-align:middle;">
-          <img src="${LOGO_SRC}" width="64" height="64" style="display:block;"/>
-        </td>
-        <td style="width:1px;background:#ddd;padding:0 0;">&nbsp;</td>
-        <td style="padding-left:16px;vertical-align:middle;">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <tr><td style="font-family:Arial,sans-serif;font-size:16px;font-weight:bold;color:#090909;line-height:1.2;padding-bottom:2px;white-space:nowrap;">${n}</td></tr>
-            <tr><td style="font-family:Arial,sans-serif;font-size:15px;color:#3E9B5D;line-height:1.2;padding-bottom:8px;white-space:nowrap;">${t}</td></tr>
-            ${rows}
-            <tr><td style="font-family:Arial,sans-serif;font-size:15px;color:#3E9B5D;line-height:1.3;padding-top:5px;font-weight:600;">nxtphase.ai</td></tr>
-          </table>
-        </td>
-      </tr>
-    </table>`;
+  return `<table cellpadding="0" cellspacing="0" border="0" style="background:#ffffff;">
+  <tr>
+    <td style="padding-right:14px;vertical-align:middle;">
+      <img src="${LOGO}" width="56" height="56" style="display:block;"/>
+    </td>
+    <td style="width:1px;background:#ddd;font-size:1px;">&nbsp;</td>
+    <td style="padding-left:14px;vertical-align:middle;">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="font-family:Aptos,Arial,sans-serif;font-size:12pt;font-weight:bold;color:#090909;line-height:1.2;padding-bottom:2px;white-space:nowrap;">${n}</td></tr>
+        <tr><td style="font-family:Aptos,Arial,sans-serif;font-size:12pt;line-height:1.2;padding-bottom:7px;white-space:nowrap;"><font color="#3E9B5D">${t}</font></td></tr>
+        ${rows}
+        <tr><td style="font-family:Aptos,Arial,sans-serif;font-size:12pt;line-height:1.2;padding-top:5px;"><font color="#3E9B5D"><b>nxtphase.ai</b></font></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>`;
 }
 
 function vals() {
@@ -141,13 +137,11 @@ function vals() {
 
 function update() {
   const v = vals();
-  const hasData = v.name || v.title || v.phone;
-  document.getElementById('dl-btn').disabled = !hasData;
-  if (hasData) {
-    document.getElementById('sig-preview').innerHTML = buildSigHTML(v.name||'Naam', v.title||'Functietitel', v.phone, v.linkedin);
-  } else {
-    document.getElementById('sig-preview').innerHTML = '<span style="color:#aaa;font-size:13px;">Vul je naam in om een voorbeeld te zien...</span>';
-  }
+  const ok = v.name.length > 0;
+  document.getElementById('copy-btn').disabled = !ok;
+  document.getElementById('sig-preview').innerHTML = ok
+    ? buildSig(v.name, v.title, v.phone, v.linkedin)
+    : '<span style="color:#bbb;font-size:13px">Vul je naam in om een voorbeeld te zien…</span>';
 }
 
 function showToast(msg) {
@@ -157,47 +151,14 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-function downloadPNG() {
+function copyHTML() {
   const v = vals();
-  const html = buildSigHTML(v.name, v.title, v.phone, v.linkedin);
-
-  // Put in render area, measure, then use html2canvas
-  const area = document.getElementById('render-area');
-  area.innerHTML = html;
-
-  // Wait for logo image to load
-  const img = area.querySelector('img');
-  const doCapture = () => {
-    html2canvas(area.querySelector('table'), {
-      backgroundColor: '#ffffff',
-      scale: 2,
-      useCORS: true,
-      logging: false,
-    }).then(canvas => {
-      canvas.toBlob(blob => {
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'handtekening-nxtphase.png';
-        a.click();
-        area.innerHTML = '';
-        showToast('✓ PNG gedownload — voeg in via Invoegen → Afbeeldingen in Outlook');
-      }, 'image/png');
-    });
-  };
-
-  if (img && !img.complete) {
-    img.onload = doCapture;
-  } else {
-    doCapture();
-  }
+  const html = buildSig(v.name, v.title, v.phone, v.linkedin);
+  const blob = new Blob([html], {type:'text/html'});
+  navigator.clipboard.write([new ClipboardItem({'text/html': blob, 'text/plain': new Blob([html],{type:'text/plain'})})])
+    .then(() => showToast('✓ Gekopieerd — plak met Ctrl+Shift+V in Outlook handtekeningen'))
+    .catch(() => navigator.clipboard.writeText(html).then(() => showToast('✓ Gekopieerd')));
 }
-
-// Load html2canvas
-const s = document.createElement('script');
-s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-document.head.appendChild(s);
-
-update();
 </script>
 </body>
 </html>
